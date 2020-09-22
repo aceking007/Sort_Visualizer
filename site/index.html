@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Visualizing Sorts</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1>Links to the respective visualization sites</h1><br/>
+    Click on the blue buttons to proceed to the sort visualization.
+    <br/><br/>
+    <h3>Comparision based sorts</h3>
+    <table class="table table-bordered table-responsive">
+      <caption>Comparision based sorts</caption>
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Sort</th>
+          <th scope="col">Stable?</th>
+          <th scope="col">Best case<br/> (time complexity)</th>
+          <th scope="col">Worst case<br/> (time complexity)</th>
+          <th scope="col">Average<br/> (time complexity)</th>
+          <th scope="col">Memory complexity</th>
+          <th scope="col">Method</th>
+          <th scope="col">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><a href="bubble_sort.html" class="btn btn-primary mr-3">Bubble Sort</a></th>
+          <td>Yes</td>
+          <td>n</td>
+          <td>n<sup>2</sup></td>
+          <td>n<sup>2</sup></td>
+          <td>1</td>
+          <td>Exchanging</td>
+          <td>Tiny Code Size</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="insertion_sort.html" class="btn btn-primary mr-3">Insertion Sort</a></th>
+          <td>Yes</td>
+          <td>n</td>
+          <td>n<sup>2</sup></td>
+          <td>n<sup>2</sup></td>
+          <td>1</td>
+          <td>Insertion</td>
+          <td><em>O(n + d)</em> in the worst case over sequences that have d inversions.</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="selection_sort.html" class="btn btn-primary mr-3">Selection Sort</a></th>
+          <td>No</td>
+          <td>n<sup>2</sup></td>
+          <td>n<sup>2</sup></td>
+          <td>n<sup>2</sup></td>
+          <td>1</td>
+          <td>Selection</td>
+          <td>Stable with <em>O(n)</em> extra space or when using linked lists.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3></h3>
+  </div>
+
+  </body>
+
+</html>
