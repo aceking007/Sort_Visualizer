@@ -9,6 +9,7 @@ The source code for the processing sketches are stored in the `processing_source
 It can be run using the [Processing 3 IDE](https://processing.org/download/) or using [Eclipse IDE](https://riptutorial.com/processing/example/31227/using-processing-with-eclipse) with some minor changes.
 
 ### Checklist of algorithms:
+
 **Comparison sorts**  
 - [x] ~~insertion sort~~
 - [x] ~~bubble sort~~
@@ -19,7 +20,8 @@ It can be run using the [Processing 3 IDE](https://processing.org/download/) or 
 - [ ] gnome sort
 - [ ] cocktail shaker sort
 - [ ] cycle sort
-- [ ] shell sort
+- [ ] shell sort  
+
 **Non-comparison sorts**  
 - [ ] radix sort
 - [ ] counting sort
