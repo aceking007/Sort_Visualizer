@@ -7,110 +7,141 @@
 </head>
 
 <body>
+  <!-- Bootstrap navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="https://github.com/aceking007/Sort_Visualizer">Fork Me!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://aceking007.github.io/">Blog <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://aceking007.github.io/projects/">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/aceking007">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
   <h1>Bubble Sort</h1>
 
   <script type="application/processing">
-    //array of numbers to sort
-    float[] numbers;
-    //bin size
-    int n;
-    //index of current traversal
-    int a;
-    //end index of current traversal
-    int b;
-    //number of comparisions
-    int comparision = 0;
-    //numeber of swaps
-    int swp = 0;
+  //array of numbers to sort
+  float[] numbers;
+  //bin size
+  int n;
+  //index of current traversal
+  int a;
+  //end index of current traversal
+  int b;
+  //number of comparisions
+  int comparision = 0;
+  //numeber of swaps
+  int swp = 0;
 
-    void setup(){
-      size(1350, 300);
-      background(0);
-      n = 10;
-      numbers = new float[width/n];
-      for(int i = 0; i < numbers.length; i++){
-        numbers[i] = random(0, height); //randomly generate numbers
-        //numbers[i] = height - 3*i; //reverse sorted array
-        //numbers[i] = 3*i; //sorted array
-      }
+  void setup(){
+    size(1350, 300);
+    background(0);
+    n = 10;
+    numbers = new float[width/n];
+    for(int i = 0; i < numbers.length; i++){
+      numbers[i] = random(0, height); //randomly generate numbers
+      //numbers[i] = height - 3*i; //reverse sorted array
+      //numbers[i] = 3*i; //sorted array
+    }
+    a = 0;
+    b = numbers.length - 1;
+  }
+
+  void draw(){
+    //prevents traversal of sorted array elements
+    if (a >= b){
       a = 0;
-      b = numbers.length - 1;
+      b -= 1;
+      //render final array after sorting
+      display(numbers.length + 1);
+    } else {
+      //render each step
+      display(a);
+      //if current > next, swap (bubble sort logic)
+      if(numbers[a] > numbers[a+1]){
+        //increment swaps
+        swp++;
+        swap(a, a+1);
+      }
+      //increment current
+      a += 1;
+      //increment comparision
+      comparision += 1;
     }
+  }
 
-    void draw(){
-      //prevents traversal of sorted array elements
-      if (a >= b){
-        a = 0;
-        b -= 1;
-        //render final array after sorting
-        display(numbers.length + 1);
+  //function to swap elements
+  void swap(int left, int right){
+    float lVal = numbers[left];
+    numbers[left] = numbers[right];
+    numbers[right] = lVal;
+  }
+
+  //function to draw the array
+  //ellipse and bar visualizations
+  void render(int coloured){
+    int x = 0;
+    int sz;
+    for(int i = 0; i < numbers.length; i++){
+      float num = numbers[i];
+      if (i == coloured){
+        fill(255, 204, 0);
+        sz = 10;
       } else {
-        //render each step
-        display(a);
-        //if current > next, swap (bubble sort logic)
-        if(numbers[a] > numbers[a+1]){
-          //increment swaps
-          swp++;
-          swap(a, a+1);
-        }
-        //increment current
-        a += 1;
-        //increment comparision
-        comparision += 1;
+        fill(255);
+        sz = 5;
       }
+      rect(x, height - num, n, num);
+      //pushMatrix();
+      //translate(n/2, 0);
+      //ellipse(x, height - num, sz, sz);
+      //popMatrix();
+      x += n;
     }
+  }
 
-    //function to swap elements
-    void swap(int left, int right){
-      float lVal = numbers[left];
-      numbers[left] = numbers[right];
-      numbers[right] = lVal;
-    }
-
-    //function to draw the array
-    //ellipse and bar visualizations
-    void render(int coloured){
-      int x = 0;
-      int sz;
-      for(int i = 0; i < numbers.length; i++){
-        float num = numbers[i];
-        if (i == coloured){
-          fill(255, 204, 0);
-          sz = 10;
-        } else {
-          fill(255);
-          sz = 5;
-        }
-        rect(x, height - num, n, num);
-        //pushMatrix();
-        //translate(n/2, 0);
-        //ellipse(x, height - num, sz, sz);
-        //popMatrix();
-        x += n;
-      }
-    }
-
-    //function to display the sorting
-    void display(int coloured){
-      background(0);
-      //print stats
-      text("Array size:", 10, 10);
-      text(width/n, 100, 10);
-      text("Comparisions:", 10, 20);
-      text(comparision, 100, 20);
-      text("Swaps:", 10, 30);
-      text(swp, 100, 30);
-      text("% sorted:", 10, 40);
-      text(((float) (numbers.length - max(b, 0))/numbers.length) * 100, 100, 40);
-      //draw the array with current item highlighted
-      render(coloured);
-    }
+  //function to display the sorting
+  void display(int coloured){
+    background(0);
+    //print stats
+    text("Array size:", 10, 10);
+    text(width/n, 100, 10);
+    text("Comparisions:", 10, 20);
+    text(comparision, 100, 20);
+    text("Swaps:", 10, 30);
+    text(swp, 100, 30);
+    text("% sorted:", 10, 40);
+    text(((float) (numbers.length - max(b, 0))/numbers.length) * 100, 100, 40);
+    //draw the array with current item highlighted
+    render(coloured);
+  }
   </script>
   <canvas tabindex="0" style="image-rendering: -webkit-optimize-constrast !important"></canvas>
   <br/>
   So, that's what bubble sort is all about. The highest values rise to the end of the list as if a bubble is rising up in water!
   <br/>
   There are no controls currently, but I'll add them later and also include some designing probably.
+
+  <!-- sticky footer for copyright and other information -->
+  <footer class="footer bg-info py-2 fixed-bottom">
+    <div class="container">
+      <span class="text-white">&copy; 2020 Arpit Omprakash</span>
+    </div>
+  </footer>
 
 </body>
 
